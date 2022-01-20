@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="JPMML-SparkML" version="1.5.12"/>
+		<Timestamp>2022-01-20T14:00:42Z</Timestamp>
+	</Header>
+	<DataDictionary>
+		<DataField name="class" optype="categorical" dataType="string">
+			<Value value="Brush_teeth"/>
+			<Value value="Walk"/>
+			<Value value="Getup_bed"/>
+			<Value value="Pour_water"/>
+			<Value value="Climb_stairs"/>
+			<Value value="Standup_chair"/>
+		</DataField>
+	</DataDictionary>
+	<TransformationDictionary/>
+	<RegressionModel functionName="classification" normalizationMethod="softmax">
+		<MiningSchema>
+			<MiningField name="class" usageType="target"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="pmml(prediction)" optype="categorical" dataType="string" isFinalResult="false"/>
+			<OutputField name="prediction" optype="continuous" dataType="double" feature="transformedValue">
+				<MapValues outputColumn="data:output" dataType="double">
+					<FieldColumnPair field="pmml(prediction)" column="data:input"/>
+					<InlineTable>
+						<row>
+							<data:input>Brush_teeth</data:input>
+							<data:output>0</data:output>
+						</row>
+						<row>
+							<data:input>Walk</data:input>
+							<data:output>1</data:output>
+						</row>
+						<row>
+							<data:input>Getup_bed</data:input>
+							<data:output>2</data:output>
+						</row>
+						<row>
+							<data:input>Pour_water</data:input>
+							<data:output>3</data:output>
+						</row>
+						<row>
+							<data:input>Climb_stairs</data:input>
+							<data:output>4</data:output>
+						</row>
+						<row>
+							<data:input>Standup_chair</data:input>
+							<data:output>5</data:output>
+						</row>
+					</InlineTable>
+				</MapValues>
+			</OutputField>
+			<OutputField name="probability(Brush_teeth)" optype="continuous" dataType="double" feature="probability" value="Brush_teeth"/>
+			<OutputField name="probability(Walk)" optype="continuous" dataType="double" feature="probability" value="Walk"/>
+			<OutputField name="probability(Getup_bed)" optype="continuous" dataType="double" feature="probability" value="Getup_bed"/>
+			<OutputField name="probability(Pour_water)" optype="continuous" dataType="double" feature="probability" value="Pour_water"/>
+			<OutputField name="probability(Climb_stairs)" optype="continuous" dataType="double" feature="probability" value="Climb_stairs"/>
+			<OutputField name="probability(Standup_chair)" optype="continuous" dataType="double" feature="probability" value="Standup_chair"/>
+		</Output>
+		<RegressionTable intercept="2.2630425624969357" targetCategory="Brush_teeth"/>
+		<RegressionTable intercept="0.42948350873019103" targetCategory="Walk"/>
+		<RegressionTable intercept="-0.28347266896133966" targetCategory="Getup_bed"/>
+		<RegressionTable intercept="-0.5260393744297726" targetCategory="Pour_water"/>
+		<RegressionTable intercept="-0.560464016646522" targetCategory="Climb_stairs"/>
+		<RegressionTable intercept="-1.3225500111894923" targetCategory="Standup_chair"/>
+	</RegressionModel>
+</PMML>
